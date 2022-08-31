@@ -1,5 +1,6 @@
 # Patient Health Database
-classwork repo for BME547
+
+classwork repo for BME547  
 author: Zac Spalding
 
 ## Purpose
@@ -12,8 +13,9 @@ This database will contain:
 	* First Name
 	* Last Name
 * Age
-* Address
 * Blood type
 * Test results
 	1. HDL
 	2. LDL
+
+### Acknowledgements
