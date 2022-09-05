@@ -16,9 +16,11 @@ def input_HDL():
 def check_HDL(hdl_val):
     if hdl_val >= 60:
         return "Normal"
-    elif hdl_val < 60 and hdl_val >= 40:
+    elif 40 <= hdl_val < 60:
         return "Borderline Low"
-    elif hdl_val < 40:
+    else:
         return "Low"
+
+
 
 interface()
