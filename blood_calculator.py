@@ -43,7 +43,15 @@ def HDL_driver():
     hdl_answer = check_HDL(hdl_val)
     output_HDL_result(hdl_val, hdl_answer)
 
+def LDL_driver():
+    ldl_val = input_LDL()
+    ldl_answer = check_LDL(ldl_val)
+    output_LDL_result(ldl_val, ldl_answer)
+
 def output_HDL_result(hdl_val, charac):
     print(f"The results for an HDL value of {hdl_val} is {charac}")
+
+def output_LDL_result(ldl_val, charac):
+    print(f"The results for an LDL value of {ldl_val} is {charac}")
 
 interface()
