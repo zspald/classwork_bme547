@@ -2,6 +2,7 @@ def interface():
     print("My Program")
     print("Options:")
     print("1 - Analyze HDL")
+    print("2 - Analyze LDL")
     print("9 - Quit")
 
     keep_running = True
@@ -11,6 +12,8 @@ def interface():
             return
         elif choice=='1':
             HDL_driver()
+        elif choice=='2':
+            LDL_driver()
 
 def input_HDL():
     hdl_in = input('Please enter HDL value: ')
