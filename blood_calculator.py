@@ -23,6 +23,10 @@ def input_LDL():
     ldl_in = input('Please enter LDL value: ')
     return int(ldl_in)
 
+def input_total_cholesterol():
+    tc_in = input('Please enter total cholesterol value: ')
+    return int(tc_in)
+
 def check_HDL(hdl_val):
     if hdl_val >= 60:
         return "Normal"
