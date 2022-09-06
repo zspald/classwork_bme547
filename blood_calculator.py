@@ -63,10 +63,18 @@ def LDL_driver():
     ldl_answer = check_LDL(ldl_val)
     output_LDL_result(ldl_val, ldl_answer)
 
+def total_cholesterol_driver():
+    tc_val = input_total_cholesterol()
+    tc_answer = check_total_cholesterol(tc_val)
+    output_total_cholesterol_result(tc_val, tc_answer)
+
 def output_HDL_result(hdl_val, charac):
     print(f"The results for an HDL value of {hdl_val} is {charac}")
 
 def output_LDL_result(ldl_val, charac):
     print(f"The results for an LDL value of {ldl_val} is {charac}")
+
+def output_total_cholesterol_result(tc_val, charac):
+    print(f"The results for a total cholesterol value of {tc_val} is {charac}")
 
 interface()
