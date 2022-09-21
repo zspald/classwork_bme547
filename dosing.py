@@ -5,6 +5,7 @@
              type of medical treatment or diagnostics.
 """
 
+
 # gets input for desired diagnosis from user
 def diagnosis_input():
     # print information for user choice
@@ -20,6 +21,7 @@ def diagnosis_input():
     diagnosis = int(input("Enter a number: "))
 
     return diagnosis
+
 
 # gets input for user weight in kg
 def weight_input():
@@ -42,6 +44,7 @@ def weight_input():
 
     return weight
 
+
 # gets the proper mg per kg conversion factor for a given diagnosis
 def get_dosage_conv_factor(diagnosis):
     # use diagnosis choice to select proper mg per kg conversion factor
@@ -50,6 +53,7 @@ def get_dosage_conv_factor(diagnosis):
 
     return dosage_mg_per_kg
 
+
 # outputs calculated dosage information for given weight and conversion factor
 def output_dosage_info(weight, dosage_mg):
     print("CORRECT DOSAGE")
@@ -57,9 +61,11 @@ def output_dosage_info(weight, dosage_mg):
     print("  the correct dosage is {:.1f} mg the first day"
           .format(dosage_mg))
 
+
 # calculate dosage amount
 def dose_amount(diagnosis, weight):
     return weight * get_dosage_conv_factor(diagnosis)
+
 
 # runs dosage pipeline to receiver user input and output dosage information
 def dose_driver():
