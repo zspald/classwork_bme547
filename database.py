@@ -12,12 +12,12 @@ def create_patient_entry(pt_first_name, pt_last_name, pt_id, pt_age):
 
 def output_database(db):
     print('##### Patient Database #####')
-    for pt in db:  # iterate through patients in database
+    for pt in db.values():  #iterate through patients in database
 
-        print("Name: {}, ID: {}, Age: {}, Tests: {}".format(get_full_name(db[pt]),
-                                                            db[pt]['Id'],
-                                                            db[pt]['Age'],
-                                                            db[pt]['Tests']))
+        print("Name: {}, ID: {}, Age: {}, Tests: {}".format(get_full_name(pt),
+                                                            pt['Id'],
+                                                            pt['Age'],
+                                                            pt['Tests']))
         print()  # newline
 
 
