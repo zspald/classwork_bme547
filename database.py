@@ -1,18 +1,32 @@
+class Patient:
+
+    def __init__(self, first_name, last_name, id, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.patient_id = id
+        self.age = age
+        self.tests = []
+
+    def full_name(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+
 def create_patient_entry(pt_first_name, pt_last_name, pt_id, pt_age):
-    new_pt_dict = {}
+    new_pt = Patient(pt_first_name, pt_last_name, pt_id, pt_age)
 
-    new_pt_dict['First Name'] = pt_first_name
-    new_pt_dict['Last Name'] = pt_last_name
-    new_pt_dict['Id'] = pt_id
-    new_pt_dict['Age'] = pt_age
-    new_pt_dict['Tests'] = []
+    # new_pt = {}
+    # new_pt['First Name'] = pt_first_name
+    # new_pt['Last Name'] = pt_last_name
+    # new_pt['Id'] = pt_id
+    # new_pt['Age'] = pt_age
+    # new_pt['Tests'] = []
 
-    return new_pt_dict
+    return new_pt
 
 
 def output_database(db):
     print('##### Patient Database #####')
-    for pt in db.values():  #iterate through patients in database
+    for pt in db.values():  # iterate through patients in database
 
         print("Name: {}, ID: {}, Age: {}, Tests: {}".format(get_full_name(pt),
                                                             pt['Id'],
@@ -46,6 +60,14 @@ def adult_or_minor(pt):
 
 
 def main():
+    x = Patient("David", "Ward", "", "")
+    print(x.full_name())
+
+    y = Patient("Edward", "Smith", "", "")
+    print(y.full_name())
+    # print(type(x))
+    exit()
+
     db = {}
     db[11] = create_patient_entry("Ann", "Ables", 11, 30)
     db[22] = create_patient_entry("Bob", "Boyles", 22, 34)
