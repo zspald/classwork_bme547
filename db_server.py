@@ -79,10 +79,10 @@ def validate_new_patient(in_data):
     return True
 
 
-@app.route('/add_test', methods='POST')
+# @app.route('/add_test', methods='POST')
 
 
-@app.route('/get_results/<patient_id>', methods=['GET'])
+# @app.route('/get_results/<patient_id>', methods=['GET'])
 
 
 if __name__ == '__main__':
