@@ -3,3 +3,8 @@ myvenv
 __pycache__
 .vscode
 *.log
+.coverage
+*.xml
+.pytest_cache
+IMG-0421.JPG
+q2_entorhinal_cortex.jpg
