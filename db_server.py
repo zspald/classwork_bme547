@@ -40,8 +40,7 @@ def add_patient(pt_name, pt_id, blood_type):
 
 
 def init_server():
-    connect("mongodb+srv://zms14:MountainDew11@bme547.tptryir.mongodb.net/"
-            "health_db?retryWrites=true&w=majority",
+    connect("",
             ssl_cert_reqs=ssl.CERT_NONE)
     add_patient('Ann Ables', 1, 'A+')
     add_patient('Bob Boyles', 2, 'B+')
