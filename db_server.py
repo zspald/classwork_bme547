@@ -5,15 +5,16 @@ Database format
     "name": <string>
     "id": <int>
     "blood_type": <string>
-    "test_names": [<string>]
+    "test_name": [<string>]
     "test_result": [<string>]
 }]
 """
 
 from flask import Flask, jsonify, request
 import logging
-
-db = []
+from pymodm import connect, MongoModel, fields, errors as pymodm_errors
+from database_definition import Patient
+import ssl
 
 
 app = Flask(__name__)
@@ -25,15 +26,22 @@ def server_status():
 
 
 def add_patient(pt_name, pt_id, blood_type):
-    new_pt = {'name': pt_name,
-              'id': pt_id,
-              'blood_type': blood_type,
-              'test_name': [],
-              'test_result': []}
-    db.append(new_pt)
+    # new_pt = {'name': pt_name,
+    #           'id': pt_id,
+    #           'blood_type': blood_type,
+    #           'test_name': [],
+    #           'test_result': []}
+    new_pt = Patient(name=pt_name,
+                     id=pt_id,
+                     blood_type=blood_type)
+    added_patient = new_pt.save()
+    # db.append(new_pt)
+    return added_patient  # returns copy of added user if successful
 
 
 def init_server():
+    connect("",
+            ssl_cert_reqs=ssl.CERT_NONE)
     add_patient('Ann Ables', 1, 'A+')
     add_patient('Bob Boyles', 2, 'B+')
     # initialize logging
@@ -102,8 +110,9 @@ def add_test_worker(in_data):
     if result is not True:
         return result, 400
 
-    add_test(in_data['id'], in_data['test_name'], in_data['test_result'])
-    return 'Test successfully added', 200
+    message, status_code = add_test(in_data['id'], in_data['test_name'],
+                                    in_data['test_result'])
+    return message, status_code
 
 
 def validate_add_test(in_data):
@@ -129,16 +138,29 @@ def validate_add_test(in_data):
 
 
 def find_pt(id):
-    for pt in db:
-        if pt['id'] == id:
-            return pt
-    return False
+    try:
+        found_patient = Patient.objects.raw({"_id": id}).first()
+    except pymodm_errors.DoesNotExist:
+        return False
+    return found_patient
 
 
 def add_test(id, test_name, test_result):
     pt = find_pt(id)
-    pt['test_name'].append(test_name)
-    pt['test_result'].append(test_result)
+    if pt is False:
+        return f'Patient ID {id} not found in database', 400
+    pt.test_name.append(test_name)
+    pt.test_result.append(test_result)
+    pt.save()
+    return 'Succesfully added test', 200
+
+
+def get_test(id, test_name):
+    pt = find_pt(id)
+    test_coll = []
+    for pt_test_name, pt_test_result in zip(pt.test_name, pt.test_result):
+        if pt_test_name == test_name:
+            test_coll.append(pt_test_result)
 
 
 # @app.route('/get_results/<patient_id>', methods=['GET'])
